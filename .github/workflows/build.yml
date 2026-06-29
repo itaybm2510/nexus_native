@@ -12,6 +12,10 @@ jobs:
         with:
           targets: aarch64-linux-android
 
+      - name: Setup Android SDK Platform 30
+        run: |
+          echo "y" | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --install "platforms;android-30" "build-tools;30.0.3"
+
       - name: Install Android NDK
         uses: nttld/setup-ndk@v1
         with:
