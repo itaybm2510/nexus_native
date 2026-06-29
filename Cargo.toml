@@ -14,4 +14,6 @@ ndk-context = "0.1"
 package = "com.nexus.nativeapp"
 label = "NEXUS Native"
 assets = "assets"
+target_sdk_version = 33
+min_sdk_version = 21
 
