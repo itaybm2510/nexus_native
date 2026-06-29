@@ -1,20 +1,18 @@
-use android_activity::{AndroidApp, InputStatus, MainEvent, PollResult};
+use android_activity::{AndroidApp, MainEvent, PollResult};
 
 #[no_mangle]
 fn android_main(app: AndroidApp) {
-    // לוג ראשוני שמראה שהאפליקציה העצמאית עלתה בטלפון!
-    println!("🛸 NEXUS NATIVE: המנוע העצמאי התחיל לרוץ על המכשיר!");
+    println!("🛸 NEXUS NATIVE: המנוע העצמאי התחיל לרוץ!");
 
     loop {
-        // המנוע מחכה לאירועים מהמסך של האנדרואיד (כמו נגיעה או סיבוב מסך)
+        // האפליקציה מחכה לאירועים מהמערכת
         app.poll_events(Some(std::time::Duration::from_millis(16)), |event| {
             match event {
-                PollResult::Main(MainEvent::InitWindow) => {
-                    println!("🛸 NEXUS NATIVE: המסך הגרפי נוצר בהצלחה!");
-                    // כאן בעתיד נצייר את הכפתורים והעיצוב
+                PollResult::Main(MainEvent::Start) => {
+                    println!("🛸 NEXUS NATIVE: האפליקציה עלתה למסך!");
                 }
-                PollResult::Main(MainEvent::DestroyWindow) => {
-                    println!("🛸 NEXUS NATIVE: האפליקציה נסגרת.");
+                PollResult::Main(MainEvent::SaveState) => {
+                    println!("🛸 NEXUS NATIVE: שמירת מצב אפליקציה.");
                 }
                 _ => {}
             }
